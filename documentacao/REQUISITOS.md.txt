@@ -1,0 +1,119 @@
+ # Especificação de Requisitos - Adote Fácil
+
+Este documento detalha as principais histórias de usuário e cenários de teste para o sistema.
+
+---
+
+## HU-01: Cadastro de Novo Usuário
+
+**Como um** visitante não cadastrado, **eu quero** me cadastrar na plataforma, **para que** eu possa anunciar animais para adoção e entrar em contato com outros usuários.
+
+### Cenários de Teste
+
+* **CT-01.1: Cadastro com sucesso (Caminho Feliz)**
+    * **Pré-condição:** O usuário não possui uma conta.
+    * **Passos:**
+        1.  Acessar a página de cadastro.
+        2.  Preencher os campos "nome", "email" e "senha" com dados válidos e inéditos.
+        3.  Clicar no botão "Cadastrar".
+    * **Resultado Esperado:** O sistema cria a conta com sucesso e redireciona o usuário para a página de login ou para o painel principal do sistema.
+
+* **CT-01.2: Tentativa de cadastro com e-mail já existente (Cenário Alternativo)**
+    * **Pré-condição:** O e-mail "usuario.existente@email.com" já está cadastrado no sistema.
+    * **Passos:**
+        1.  Acessar a página de cadastro.
+        2.  Preencher o campo "email" com "usuario.existente@email.com".
+        3.  Clicar no botão "Cadastrar".
+    * **Resultado Esperado:** O sistema exibe uma mensagem de erro clara, informando que o e-mail já está em uso, e não cria uma nova conta.
+
+---
+
+## HU-02: Anunciar um Animal para Adoção
+
+**Como um** usuário autenticado, **eu quero** cadastrar as informações e fotos de um animal, **para que** outras pessoas possam encontrá-lo na plataforma.
+
+### Cenários de Teste
+
+* **CT-02.1: Cadastro de animal com sucesso (Caminho Feliz)**
+    * **Pré-condição:** O usuário está logado no sistema.
+    * **Passos:**
+        1.  Acessar a página de cadastro de animais.
+        2.  Preencher todos os campos obrigatórios (nome, tipo, gênero, etc.) com dados válidos.
+        3.  Fazer o upload de pelo menos uma foto.
+        4.  Clicar no botão "Salvar" ou "Anunciar".
+    * **Resultado Esperado:** O sistema salva o novo animal, o associa ao usuário logado e exibe uma mensagem de sucesso. O novo animal deve aparecer na lista de "Meus Animais".
+
+* **CT-02.2: Tentativa de cadastro sem preencher campos obrigatórios (Cenário Alternativo)**
+    * **Pré-condição:** O usuário está logado no sistema.
+    * **Passos:**
+        1.  Acessar a página de cadastro de animais.
+        2.  Deixar o campo "nome" em branco.
+        3.  Clicar no botão "Salvar".
+    * **Resultado Esperado:** O sistema exibe uma mensagem de erro, destacando os campos obrigatórios que não foram preenchidos, e não cadastra o animal. 
+
+---
+
+## HU-03: Login de Usuário
+
+**Como um** usuário cadastrado, **eu quero** fazer login com meu e-mail e senha, **para que** eu possa acessar as funcionalidades restritas da plataforma, como gerenciar meus animais e iniciar chats.
+
+### Cenários de Teste
+
+* **CT-03.1: Login com sucesso (Caminho Feliz)**
+    * **Pré-condição:** Um usuário com o e-mail "usuario.valido@email.com" e senha "senha123" existe no sistema.
+    * **Passos:**
+        1.  Acessar a página de login.
+        2.  Inserir "usuario.valido@email.com" no campo de e-mail.
+        3.  Inserir "senha123" no campo de senha.
+        4.  Clicar no botão "Entrar".
+    * **Resultado Esperado:** O login é bem-sucedido e o usuário é redirecionado para a página principal do sistema (dashboard).
+
+* **CT-03.2: Tentativa de login com senha incorreta (Cenário Alternativo)**
+    * **Pré-condição:** O usuário "usuario.valido@email.com" existe.
+    * **Passos:**
+        1.  Acessar a página de login.
+        2.  Inserir "usuario.valido@email.com" no campo de e-mail.
+        3.  Inserir "senha_errada" no campo de senha.
+        4.  Clicar no botão "Entrar".
+    * **Resultado Esperado:** O sistema exibe uma mensagem de erro, como "E-mail ou senha inválidos", e o usuário permanece na página de login.
+
+---
+
+## HU-04: Consultar Animais Disponíveis
+
+**Como um** visitante ou usuário logado, **eu quero** poder ver a lista de todos os animais disponíveis para adoção, com fotos e informações básicas, **para que** eu possa encontrar um pet que me interesse.
+
+### Cenários de Teste
+
+* **CT-04.1: Visualizar lista com animais disponíveis (Caminho Feliz)**
+    * **Pré-condição:** Existem animais cadastrados no sistema com o status "disponível".
+    * **Passos:**
+        1.  Acessar a página inicial ou a página de "Adoção".
+    * **Resultado Esperado:** Uma lista ou galeria de animais é exibida na tela, mostrando pelo menos a foto, nome e tipo de cada animal.
+
+* **CT-04.2: Visualizar lista vazia (Cenário Alternativo)**
+    * **Pré-condição:** Não há nenhum animal cadastrado no sistema.
+    * **Passos:**
+        1.  Acessar a página inicial ou a página de "Adoção".
+    * **Resultado Esperado:** O sistema exibe uma mensagem informativa, como "Nenhum animal encontrado para adoção no momento", em vez da lista.
+
+---
+
+## HU-05: Iniciar um Chat
+
+**Como um** usuário autenticado, **eu quero** iniciar uma conversa por chat com o doador de um animal, **para que** eu possa tirar dúvidas e combinar os detalhes da adoção.
+
+### Cenários de Teste
+
+* **CT-05.1: Usuário logado inicia um chat (Caminho Feliz)**
+    * **Pré-condição:** O usuário "Interessado" está logado. Existe um animal anunciado pelo usuário "Doador".
+    * **Passos:**
+        1.  O usuário "Interessado" navega até a página de detalhes do animal.
+        2.  Clica no botão "Entrar em contato" ou "Iniciar Chat".
+    * **Resultado Esperado:** O sistema abre uma nova tela de chat entre o "Interessado" e o "Doador", possivelmente com uma mensagem inicial sobre o animal em questão.
+
+* **CT-05.2: Visitante tenta iniciar um chat (Cenário Alternativo)**
+    * **Pré-condição:** Um visitante (não logado) está na página de detalhes de um animal.
+    * **Passos:**
+        1.  O visitante clica no botão "Entrar em contato" ou "Iniciar Chat".
+    * **Resultado Esperado:** O sistema redireciona o visitante para a página de login ou exibe um pop-up pedindo que ele faça login/crie uma conta para poder iniciar uma conversa.
