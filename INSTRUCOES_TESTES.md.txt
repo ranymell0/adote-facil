@@ -1,0 +1,14 @@
+# Como Executar os Testes Automatizados com Cypress
+
+## Pré-requisitos
+1. Docker e Docker Compose instalados.
+2. Node.js e npm instalados na máquina local.
+
+## Passos para Execução
+1. Garanta que os arquivos `.env` para o `frontend` e `backend` estão configurados.
+2. Em um terminal, na pasta `adote-facil/backend`, execute o comando `docker compose up` para iniciar a aplicação.
+3. Aguarde a aplicação iniciar completamente.
+4. Em um **segundo terminal**, navegue para a pasta `adote-facil/frontend`.
+5. Instale as dependências com `npm install`.
+6. Execute o comando `npx cypress open` para abrir o Cypress Test Runner.
+7. Na interface do Cypress, escolha "E2E Testing", selecione um navegador e clique no arquivo de teste `cenarios_principais.cy.js` para executá-lo.
